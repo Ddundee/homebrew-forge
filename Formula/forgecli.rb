@@ -1,8 +1,8 @@
-class Forge < Formula
+class Forgecli < Formula
   desc "Idea to product in one command"
   homepage "https://github.com/Ddundee/forge"
-  url "https://github.com/Ddundee/forge/archive/refs/tags/v0.1.4.tar.gz"
-  sha256 "00c97573445464d5ac2d4b9364948cb9fd268e2c5d7d44f6157c0741dc0b106a"
+  url "https://github.com/Ddundee/forge/archive/refs/tags/v0.1.5.tar.gz"
+  sha256 "PLACEHOLDER"
   license "MIT"
 
   depends_on "python@3.11"
@@ -13,10 +13,10 @@ class Forge < Formula
     system python, "-m", "venv", venv
     system venv/"bin/pip", "install", "--upgrade", "pip", "--quiet"
     system venv/"bin/pip", "install", "--no-cache-dir", buildpath, "--quiet"
-    bin.install_symlink venv/"bin/forge"
+    bin.install_symlink venv/"bin/forgecli"
   end
 
   test do
-    assert_match "Idea to product", shell_output("#{bin}/forge --help")
+    assert_match "Idea to product", shell_output("#{bin}/forgecli --help")
   end
 end
