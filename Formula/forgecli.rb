@@ -7,6 +7,8 @@ class Forgecli < Formula
 
   depends_on "python@3.11"
 
+  skip_clean "libexec/venv"
+
   def install
     python = Formula["python@3.11"].opt_bin/"python3.11"
     venv = libexec/"venv"
