@@ -1,8 +1,8 @@
 class Forgecli < Formula
   desc "Idea to product in one command"
   homepage "https://github.com/Ddundee/forge"
-  url "https://github.com/Ddundee/forge/archive/refs/tags/v0.1.6.tar.gz"
-  sha256 "6a784d9bb230af936202ae35649e2995242590a5e073bdd863e4eb9f9ef7e70a"
+  url "https://github.com/Ddundee/forge/archive/refs/tags/v0.1.7.tar.gz"
+  sha256 "1e06971577fab24e04ebbd77c953091a88d8365a1c8e3f24afecceee0aaf7f44"
   license "MIT"
 
   depends_on "python@3.11"
