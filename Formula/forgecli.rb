@@ -6,9 +6,10 @@ class Forgecli < Formula
   license "MIT"
 
   depends_on "node"
+  depends_on "python3" => :build
 
   def install
-    system "npm", "ci", "--ignore-scripts"
+    system "npm", "ci"
     system "npm", "run", "build"
     libexec.install Dir["*"]
     chmod "+x", libexec/"dist/cli.js"
