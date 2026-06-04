@@ -1,24 +1,21 @@
 class Forgecli < Formula
   desc "Idea to product in one command"
   homepage "https://github.com/Ddundee/forge"
-  url "https://github.com/Ddundee/forge/archive/refs/tags/v0.1.10.tar.gz"
-  sha256 "9bb8c41821ce0055ead587a32374fc9c746fbd1afe07bcaad9b4b98e9cd33976"
+  url "https://github.com/Ddundee/forge/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "PLACEHOLDER"
   license "MIT"
 
-  depends_on "python@3.11"
-
-  skip_clean "libexec/venv"
+  depends_on "node"
 
   def install
-    python = Formula["python@3.11"].opt_bin/"python3.11"
-    venv = libexec/"venv"
-    system python, "-m", "venv", venv
-    system venv/"bin/pip", "install", "--upgrade", "pip", "--quiet"
-    system venv/"bin/pip", "install", "--no-cache-dir", buildpath, "--quiet"
-    bin.install_symlink venv/"bin/forgecli"
+    system "npm", "ci", "--ignore-scripts"
+    system "npm", "run", "build"
+    libexec.install Dir["*"]
+    chmod "+x", libexec/"dist/cli.js"
+    bin.install_symlink libexec/"dist/cli.js" => "forgecli"
   end
 
   test do
-    assert_match "Idea to product", shell_output("#{bin}/forgecli --help")
+    assert_match "build", shell_output("#{bin}/forgecli --help")
   end
 end
