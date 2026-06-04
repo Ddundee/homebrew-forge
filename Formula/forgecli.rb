@@ -11,14 +11,10 @@ class Forgecli < Formula
     system "npm", "ci"
     system "npm", "run", "build"
     libexec.install Dir["*"]
+    node = Formula["node"].opt_bin/"node"
     (bin/"forgecli").write <<~EOS
       #!/usr/bin/env bash
-      node_major=$(node -e "process.stdout.write(process.version.slice(1).split('.')[0])" 2>/dev/null)
-      if [ -n "$node_major" ] && [ "$node_major" -lt 23 ]; then
-        exec node --experimental-sqlite "#{libexec}/dist/cli.js" "$@"
-      else
-        exec node "#{libexec}/dist/cli.js" "$@"
-      fi
+      exec "#{node}" "#{libexec}/dist/cli.js" "$@"
     EOS
     chmod "+x", bin/"forgecli"
   end
